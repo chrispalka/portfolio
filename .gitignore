@@ -1,2 +1,5 @@
 node_modules
 bundle.js
+*.woff2
+*.woff
+public/*.jpg
