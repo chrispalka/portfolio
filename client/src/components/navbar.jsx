@@ -1,15 +1,23 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import { Navbar, Nav } from 'react-bootstrap';
 
-const NavBar = () => (
+const NavBar = ({ clickHandler, routes }) => (
   <Navbar bg="" expand="lg">
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
     <Navbar.Collapse id="basic-navbar-nav">
       <Nav className="mr-auto">
-        <Nav.Link href="#about">About</Nav.Link>
-        <Nav.Link href="#skills">Skills</Nav.Link>
-        <Nav.Link href="#portfolio">Portfolio</Nav.Link>
-        <Nav.Link href="#contact">Contact</Nav.Link>
+        {routes.map((route) => (
+          <Nav.Link
+            key={route.path}
+            as={NavLink}
+            to={route.path}
+            onClick={(e) => clickHandler(e)}
+          >
+            {route.name}
+          </Nav.Link>
+        ))}
       </Nav>
     </Navbar.Collapse>
   </Navbar>

@@ -3,8 +3,9 @@ import { Container } from 'react-bootstrap';
 import styled from 'styled-components';
 
 const SkillsContainer = styled(Container)`
-  border: 2px solid gray;
-  background-color: white;
+  position: absolute;
+  right: 0;
+  left: 0;
   height: 500px;
   h1 {
     font-family: "Roboto";
@@ -15,6 +16,7 @@ const SkillsContainer = styled(Container)`
 const Skills = () => (
   <SkillsContainer id="skills">
     <h1>Skills</h1>
+    <p>klsjfhalksdjflkjasdlfjlasdjflkjlkjflkjslfkjasdlkfjasd;lkfjasd;lkfj</p>
   </SkillsContainer>
 );
 
