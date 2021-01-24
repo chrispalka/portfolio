@@ -28,7 +28,6 @@ const routes = [
 const Global = createGlobalStyle`
 body {
   font-family: "inconsolata";
-  transition: background-color 0.5s ease;
   background: ${(props) => (props.color === 'home'
     ? '#2d2d2d'
     : props.color === 'skills'
@@ -37,7 +36,7 @@ body {
         ? '#8d2663'
         : props.color === 'contact'
           ? '#000000'
-          : '#3d405b')};
+          : '#3B3E59')};
     }
 html {
   scroll-behavior: smooth;
@@ -45,15 +44,15 @@ html {
 `;
 
 const NavContainer = styled(Container)`
-  position: fixed;
-  left: 0;
-  right: 0;
-  max-width: 100%;
-  top: 0;
-  z-index: 999;
-  .navbar-nav {
-    margin: auto;
-    .nav-link {
+position: fixed;
+left: 0;
+right: 0;
+max-width: 100%;
+top: 0;
+z-index: 999;
+.navbar-nav {
+  display: block;
+  .nav-link {
       color: rgba(255,255,255,.3);
       :hover, &.active {
         color: white;
@@ -78,7 +77,7 @@ const CarouselContainer = styled(Container)`
   position: relative;
   margin-top: 8em;
   div {
-    background-color: #E9C46A;
+    background-color: #a2d0c1;
     color: #2a9d8f;
   }
 `;
@@ -90,10 +89,10 @@ const App = () => {
   const [showCarousel, setShowCarousel] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
-    setTimeout(() => setShowNav(true), 1000);
-    setTimeout(() => setShowPhoto(true), 2000);
-    setTimeout(() => setShowCarousel(true), 2200);
-    setTimeout(() => setIsLoading(false), 1200);
+    setTimeout(() => setShowNav(true), 4800);
+    setTimeout(() => setShowPhoto(true), 4500);
+    setTimeout(() => setShowCarousel(true), 4900);
+    setTimeout(() => setIsLoading(false), 3900);
   }, []);
   const [clicked, setClick] = useState(false);
   const [color, setColor] = useState('');
@@ -102,7 +101,7 @@ const App = () => {
     setClick(!clicked);
   };
   const timeout = 300;
-  const slideTimeout = { enter: 900, exit: 900 };
+  const slideTimeout = { enter: 800, exit: 800 };
   return (
     <>
       <Global color={color} clicked={clicked} />
@@ -118,7 +117,7 @@ const App = () => {
         <CSSTransition
           in={showNav}
           timeout={slideTimeout}
-          classNames="slide"
+          classNames="na"
           unmountOnExit
         >
           <NavBar clickHandler={clickHandler} routes={routes} />

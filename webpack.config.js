@@ -36,14 +36,14 @@ module.exports = {
         use: ['style-loader', 'css-loader'],
       },
       {
-        test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
+        test: /\.(png|jpg|svg|eot|ttf|woff|woff2)$/,
         loader: 'url-loader',
         options: {
           limit: 10000,
         },
       },
       {
-        test: /\.mp3$/,
+        test: /\.(mp3|gif)$/,
         use: [
           {
             loader: 'file-loader',

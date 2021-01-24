@@ -14,6 +14,7 @@ const NavBar = ({ clickHandler, routes }) => (
             as={NavLink}
             to={route.path}
             onClick={(e) => clickHandler(e)}
+            exact
           >
             {route.name}
           </Nav.Link>

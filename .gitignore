@@ -3,3 +3,4 @@ bundle.js
 *.woff2
 *.woff
 public/*.jpg
+public/*.gif
