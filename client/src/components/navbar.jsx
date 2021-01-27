@@ -1,36 +1,52 @@
 /* eslint-disable react/prop-types */
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useState } from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Link } from 'react-scroll';
+import useDocumentScrollThrottled from './hooks/throttle';
 
-const NavBar = ({ clickHandler, routes }) => (
-  <Navbar bg="" expand="lg">
-    <Navbar.Toggle aria-controls="basic-navbar-nav" />
-    <Navbar.Collapse id="basic-navbar-nav">
-      <Nav className="mr-auto">
-        {routes.map((route) => (
-          <Nav.Link
-            key={route.path}
-            as={NavLink}
-            to={route.path}
-            onClick={(e) => clickHandler(e)}
-            exact
-          >
-            {route.name}
-          </Nav.Link>
-        ))}
-      </Nav>
-    </Navbar.Collapse>
-  </Navbar>
-);
+const NavBar = ({ routes }) => {
+  const [shouldHideHeader, setShouldHideHeader] = useState(false);
+  const [shouldShowShadow, setShouldShowShadow] = useState(false);
+
+  const MINIMUM_SCROLL = 80;
+  const TIMEOUT_DELAY = 500;
+
+  const shadowStyle = shouldShowShadow ? 'shadow' : '';
+  const hiddenStyle = shouldHideHeader ? 'hidden' : '';
+
+  useDocumentScrollThrottled((callbackData) => {
+    const { previousScrollTop, currentScrollTop } = callbackData;
+    const isScrolledDown = previousScrollTop < currentScrollTop;
+    const isMinimumScrolled = currentScrollTop > MINIMUM_SCROLL;
+
+    setShouldShowShadow(currentScrollTop > 2);
+
+    setTimeout(() => {
+      setShouldHideHeader(isScrolledDown && isMinimumScrolled);
+    }, TIMEOUT_DELAY);
+  });
+  return (
+    <Navbar bg="" expand="lg">
+      <Navbar.Toggle aria-controls="basic-navbar-nav" />
+      <Navbar.Collapse id="basic-navbar-nav">
+        <Nav className={`mr-auto ${shadowStyle} ${hiddenStyle}`}>
+          {routes.map((route) => (
+            <Link
+              className="test"
+              activeClass="active"
+              key={route.path}
+              to={route.name.toLowerCase()}
+              href={`#${route.name.toLowerCase()}`}
+              spy
+            >
+              <FontAwesomeIcon icon={route.icon} className="fa-size" />
+            </Link>
+          ))}
+        </Nav>
+      </Navbar.Collapse>
+    </Navbar>
+  );
+};
 
 export default NavBar;
-
-
-{/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-          <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-          <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-          <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-          <NavDropdown.Divider />
-          <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
-        </NavDropdown> */}
