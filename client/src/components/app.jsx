@@ -28,7 +28,7 @@ const Global = createGlobalStyle`
 body {
   margin: 0;
   font-family: "inconsolata";
-  background-color: #14213d;
+  background-color: #131F3B;
 }
 html {
   scroll-behavior: smooth;
@@ -85,12 +85,12 @@ const CarouselContainer = styled(Container)`
   position: relative;
   margin-top: 8em;
   div {
+    padding: 25px;
     h1 {
       color: #f9df74;
     }
     display: block;
     color: #FFF;
-
   }
 `;
 
@@ -102,37 +102,39 @@ const FooterContainer = styled(Container)`
 const App = () => {
   const [showNav, setShowNav] = useState(false);
   const [showPhoto, setShowPhoto] = useState(false);
-  const [showComponentOne, setShowComponentOne] = useState(false);
-  const [showComponentTwo, setShowComponentTwo] = useState(false);
-  const [showComponentThree, setShowComponentThree] = useState(false);
-  const [showComponentFour, setShowComponentFour] = useState(false);
+  const [showTitle, setShowTitle] = useState(false);
+  const [showAbout, setShowAbout] = useState(false);
+  const [showSkills, setShowSkills] = useState(false);
+  const [showPortfolio, setShowPortfolio] = useState(false);
+  const [showContact, setShowContact] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
   const slideTimeout = { enter: 800, exit: 800 };
 
   const routes = [
     {
-      path: '/', name: 'About', Component: About, icon: faUser, show: showComponentOne,
+      path: '/', name: 'About', Component: About, icon: faUser, show: showAbout,
     },
     {
-      path: '/skills', name: 'Skills', Component: Skills, icon: faHammer, show: showComponentTwo,
+      path: '/skills', name: 'Skills', Component: Skills, icon: faHammer, show: showSkills,
     },
     {
-      path: '/portfolio', name: 'Portfolio', Component: Portfolio, icon: faBookOpen, show: showComponentThree,
+      path: '/portfolio', name: 'Portfolio', Component: Portfolio, icon: faBookOpen, show: showPortfolio,
     },
     {
-      path: '/contact', name: 'Contact', Component: Contact, icon: faAddressCard, show: showComponentFour,
+      path: '/contact', name: 'Contact', Component: Contact, icon: faAddressCard, show: showContact,
     },
   ];
 
   useEffect(() => {
-    setTimeout(() => setShowNav(true), 4800);
-    setTimeout(() => setShowPhoto(true), 4500);
-    setTimeout(() => setShowComponentOne(true), 5200);
-    setTimeout(() => setShowComponentTwo(true), 5300);
-    setTimeout(() => setShowComponentThree(true), 5400);
-    setTimeout(() => setShowComponentFour(true), 5500);
-    setTimeout(() => setIsLoading(false), 3900);
+    setTimeout(() => setShowNav(true), 5800);
+    setTimeout(() => setShowPhoto(true), 5500);
+    setTimeout(() => setShowTitle(true), 5800);
+    setTimeout(() => setShowAbout(true), 6200);
+    setTimeout(() => setShowSkills(true), 6300);
+    setTimeout(() => setShowPortfolio(true), 6400);
+    setTimeout(() => setShowContact(true), 6500);
+    setTimeout(() => setIsLoading(false), 4900);
   }, []);
 
   return (
@@ -171,7 +173,7 @@ const App = () => {
           </ImageWrapper>
         </CSSTransition>
         <CSSTransition
-          in={showPhoto}
+          in={showTitle}
           timeout={300}
           classNames="page"
           unmountOnExit
@@ -192,7 +194,7 @@ const App = () => {
         ))}
       </CarouselContainer>
       <CSSTransition
-        in={showComponentFour}
+        in={showContact}
         timeout={300}
         classNames="page"
         unmountOnExit
