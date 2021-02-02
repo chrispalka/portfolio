@@ -27,13 +27,12 @@ const NavBar = ({ routes }) => {
     }, TIMEOUT_DELAY);
   });
   return (
-    <Navbar bg="" expand="lg">
+    <Navbar bg="" className={`mr-auto ${shadowStyle} ${hiddenStyle}`} expand="lg">
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className={`mr-auto ${shadowStyle} ${hiddenStyle}`}>
+        <Nav>
           {routes.map((route) => (
             <Link
-              className="test"
               activeClass="active"
               key={route.path}
               to={route.name.toLowerCase()}
@@ -41,6 +40,7 @@ const NavBar = ({ routes }) => {
               spy
             >
               <FontAwesomeIcon icon={route.icon} className="fa-size" />
+              <span className="roll-out" id={route.name.toLowerCase()}>{route.name}</span>
             </Link>
           ))}
         </Nav>

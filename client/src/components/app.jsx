@@ -38,18 +38,65 @@ html {
 const NavContainer = styled(Container)`
 position: fixed;
 left: 0;
-right: 30;
-max-width: 5%;
-top: 15;
+right: 0;
+max-width: 100%;
+top: 0;
+padding: 0;
 z-index: 999;
-.navbar-nav {
+max-width: 100%;
+.roll-out {
   display: block;
-  a {
-    padding: 5px;
+  opacity: 0;
+  top: -20px;
+  right: 0;
+  margin: 0;
+  position: relative;
+  transition: all 600ms;
+}
+#about {
+  left: -11px;
+}
+#skills {
+  left: -15px;
+}
+#portfolio {
+  left: -23px;
+}
+#contact {
+  left: -17px;
+}
+.navbar-nav {
+  margin: auto;
+  white-space: nowrap;
+  :hover .roll-out {
     display: block;
-      color: rgba(255,255,255,.3);
+    opacity: 1;
+    position: relative;
+    top:0;
+    right: 100px;
+      transition: all 600ms;
+    }
+    :hover .roll-out #about {
+      left: -11px;
+    }
+    :hover .roll-out #skills {
+      left: -15px;
+    }
+    :hover .roll-out #portfolio {
+      left: -23px;
+    }
+    :hover .roll-out #contact {
+      left: -16px;
+    }
+  }
+  a {
+    color: rgba(255,255,255,.3);
+    max-width: 15px;
+    margin: 10px 50px;
+    display: inline-block;
       :hover, &.active {
         color: #f9df74;
+        text-decoration: none;
       }
     }
   }

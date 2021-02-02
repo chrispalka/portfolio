@@ -42,16 +42,20 @@
 }
 
 .mr-auto {
-  transform: translateX(0);
+  transform: translateY(0);
   transition: transform 0.3s ease;
 }
 
 .shadow {
   box-shadow: 0 9px 9px -9px rgba(0, 0, 0, 0.13);
+  background-color: #131F3B;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  opacity: .8;
 }
 
 .hidden {
-  transform: translateX(-275%);
+  transform: translateY(-150%);
 }
 
 .fa-size {
