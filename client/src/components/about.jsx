@@ -8,7 +8,7 @@ const MainContainer = styled(Container)`
   right: 0;
   left: 0;
   height: 500px;
-  border-bottom: 1px solid white;
+  border-bottom: 1px solid #2b2d42;
   h1 {
     font-weight: 600;
   }
@@ -17,10 +17,17 @@ const MainContainer = styled(Container)`
 const InnerDiv = styled(Container)`
   height: 300px;
   box-shadow: 10px 9px 9px -9px rgba(0, 0, 0.70, 0.70);
-  background-color: #14213d;
+  background-color: #2b2d42;
+  p {
+    color: #8d99ae;
+  }
+
   transition: transform .2s;
   :hover {
     transform: scale(1.03);
+    p {
+      color: #FFF;
+    }
   }
 `;
 

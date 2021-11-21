@@ -40,7 +40,7 @@ const NavBar = ({ routes }) => {
               spy
             >
               <FontAwesomeIcon icon={route.icon} className="fa-size" />
-              <span className="roll-out" id={route.name.toLowerCase()}>{route.name}</span>
+              <span className="roll-out" id="contact">{route.name}</span>
             </Link>
           ))}
         </Nav>

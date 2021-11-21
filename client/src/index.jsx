@@ -4,6 +4,7 @@ import App from './components/app';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'fontsource-roboto/latin.css';
 import 'typeface-inconsolata';
+import 'typeface-space-mono';
 import '../styles.css';
 import '../normalize.css';
 

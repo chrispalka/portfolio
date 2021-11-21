@@ -13,7 +13,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import NavBar from './navbar';
+// import NavBar from './navbar';
 import About from './about';
 import Skills from './skills';
 import Portfolio from './portfolio';
@@ -26,81 +26,82 @@ AOS.init();
 
 const Global = createGlobalStyle`
 body {
+  overflow-x: hidden;
   margin: 0;
-  font-family: "inconsolata";
-  background-color: #131F3B;
+  font-family: "space mono";
+  background-color: #edf2f4;
 }
 html {
   scroll-behavior: smooth;
 }
 `;
 
-const NavContainer = styled(Container)`
-position: fixed;
-left: 0;
-right: 0;
-max-width: 100%;
-top: 0;
-padding: 0;
-z-index: 999;
-max-width: 100%;
-.roll-out {
-  display: block;
-  opacity: 0;
-  top: -20px;
-  right: 0;
-  margin: 0;
-  position: relative;
-  transition: all 600ms;
-}
-#about {
-  left: -11px;
-}
-#skills {
-  left: -15px;
-}
-#portfolio {
-  left: -23px;
-}
-#contact {
-  left: -17px;
-}
-.navbar-nav {
-  margin: auto;
-  white-space: nowrap;
-  :hover .roll-out {
-    display: block;
-    opacity: 1;
-    position: relative;
-    top:0;
-    right: 100px;
-      transition: all 600ms;
-    }
-    :hover .roll-out #about {
-      left: -11px;
-    }
-    :hover .roll-out #skills {
-      left: -15px;
-    }
-    :hover .roll-out #portfolio {
-      left: -23px;
-    }
-    :hover .roll-out #contact {
-      left: -16px;
-    }
-  }
-  a {
-    color: rgba(255,255,255,.3);
-    max-width: 15px;
-    margin: 10px 50px;
-    display: inline-block;
-      :hover, &.active {
-        color: #f9df74;
-        text-decoration: none;
-      }
-    }
-  }
-`;
+// const NavContainer = styled(Container)`
+// position: fixed;
+// left: 0;
+// right: 0;
+// max-width: 100%;
+// top: 0;
+// padding: 0;
+// z-index: 999;
+// max-width: 100%;
+// .roll-out {
+//   display: block;
+//   opacity: 0;
+//   top: -20px;
+//   right: 0;
+//   margin: 0;
+//   position: relative;
+//   transition: all 600ms;
+// }
+// #about {
+//   left: -11px;
+// }
+// #skills {
+//   left: -15px;
+// }
+// #portfolio {
+//   left: -23px;
+// }
+// #contact {
+//   left: -17px;
+// }
+// .navbar-nav {
+//   margin: auto;
+//   white-space: nowrap;
+//   :hover .roll-out {
+//     display: block;
+//     opacity: 1;
+//     position: relative;
+//     top:0;
+//     right: 100px;
+//       transition: all 600ms;
+//     }
+//     :hover .roll-out #about {
+//       left: -11px;
+//     }
+//     :hover .roll-out #skills {
+//       left: -15px;
+//     }
+//     :hover .roll-out #portfolio {
+//       left: -23px;
+//     }
+//     :hover .roll-out #contact {
+//       left: -16px;
+//     }
+//   }
+//   a {
+//     color: rgba(255,255,255,.3);
+//     max-width: 15px;
+//     margin: 10px 50px;
+//     display: inline-block;
+//       :hover, &.active {
+//         color: #f9df74;
+//         text-decoration: none;
+//       }
+//     }
+//   }
+// `;
 
 const PhotoContainer = styled(Container)`
   margin-top: 5rem;
@@ -114,14 +115,14 @@ const PhotoContainer = styled(Container)`
     height: 15rem;
     object-fit: cover;
     border-radius: 50%;
-    filter: sepia(.8);
+    filter: saturate(0);
   }
   img:hover {
     opacity: 1;
-    filter: sepia(0);
+    filter: saturate(.8);
   }
   h1 {
-    color: #f9df74;
+    color: #2b2d42;
   }
 `;
 
@@ -134,7 +135,7 @@ const CarouselContainer = styled(Container)`
   div {
     padding: 25px;
     h1 {
-      color: #f9df74;
+      color: #2b2d42;
     }
     display: block;
     color: #FFF;
@@ -147,16 +148,16 @@ const FooterContainer = styled(Container)`
 `;
 
 const App = () => {
-  const [showNav, setShowNav] = useState(false);
+  // const [showNav, setShowNav] = useState(false);
   const [showPhoto, setShowPhoto] = useState(false);
   const [showTitle, setShowTitle] = useState(false);
   const [showAbout, setShowAbout] = useState(false);
   const [showSkills, setShowSkills] = useState(false);
   const [showPortfolio, setShowPortfolio] = useState(false);
   const [showContact, setShowContact] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const slideTimeout = { enter: 800, exit: 800 };
+  // const slideTimeout = { enter: 800, exit: 800 };
 
   const routes = [
     {
@@ -174,15 +175,15 @@ const App = () => {
   ];
 
   useEffect(() => {
-    setTimeout(() => setShowNav(true), 5800);
-    setTimeout(() => setShowPhoto(true), 5500);
-    setTimeout(() => setShowTitle(true), 5800);
-    setTimeout(() => setShowAbout(true), 6200);
-    setTimeout(() => setShowSkills(true), 6300);
-    setTimeout(() => setShowPortfolio(true), 6400);
-    setTimeout(() => setShowContact(true), 6500);
+    setTimeout(() => setShowNav(true), isLoading ? 5800 : 5800 - 4900);
+    setTimeout(() => setShowPhoto(true), isLoading ? 5500 : 5500 - 4900);
+    setTimeout(() => setShowTitle(true), isLoading ? 5800 : 5800 - 4900);
+    setTimeout(() => setShowAbout(true), isLoading ? 6200 : 6200 - 4900);
+    setTimeout(() => setShowSkills(true), isLoading ? 6300 : 6300 - 4900);
+    setTimeout(() => setShowPortfolio(true), isLoading ? 6400 : 6400 - 4900);
+    setTimeout(() => setShowContact(true), isLoading ? 6500 : 6500 - 4900);
     setTimeout(() => setIsLoading(false), 4900);
-  }, []);
+  }, [isLoading]);
 
   return (
     <>
@@ -195,7 +196,7 @@ const App = () => {
       >
         <Loading />
       </CSSTransition>
-      <NavContainer>
+      {/* <NavContainer>
         <CSSTransition
           in={showNav}
           timeout={slideTimeout}
@@ -204,7 +205,7 @@ const App = () => {
         >
           <NavBar routes={routes} />
         </CSSTransition>
-      </NavContainer>
+      </NavContainer> */}
       <PhotoContainer>
         <CSSTransition
           in={showPhoto}

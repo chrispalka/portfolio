@@ -36,6 +36,7 @@
     "react-transition-group": "^4.4.1",
     "styled-components": "^5.2.1",
     "typeface-inconsolata": "^1.1.13",
+    "typeface-space-mono": "^1.1.13",
     "webpack": "^5.6.0",
     "webpack-cli": "^4.2.0"
   },
