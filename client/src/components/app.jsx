@@ -13,12 +13,13 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-// import NavBar from './navbar';
+import NavBar from './navbar';
 import About from './about';
 import Skills from './skills';
 import Portfolio from './portfolio';
 import Contact from './contact';
 import Footer from './footer';
+// import OnClickComponent from './onClickComponent';
 import Profile from '../../assets/profile.jpg';
 import Loading from './loading';
 
@@ -29,79 +30,48 @@ body {
   overflow-x: hidden;
   margin: 0;
   font-family: "space mono";
-  background-color: #edf2f4;
-}
+  background-image: linear-gradient( 296.3deg,  rgba(221,221,221,1) 61.4%, rgba(237,242,244,1) 67.4% );}
 html {
   scroll-behavior: smooth;
 }
 `;
 
-// const NavContainer = styled(Container)`
-// position: fixed;
-// left: 0;
-// right: 0;
-// max-width: 100%;
-// top: 0;
-// padding: 0;
-// z-index: 999;
-// max-width: 100%;
-// .roll-out {
-//   display: block;
-//   opacity: 0;
-//   top: -20px;
-//   right: 0;
-//   margin: 0;
-//   position: relative;
-//   transition: all 600ms;
-// }
-// #about {
-//   left: -11px;
-// }
-// #skills {
-//   left: -15px;
-// }
-// #portfolio {
-//   left: -23px;
-// }
-// #contact {
-//   left: -17px;
-// }
-// .navbar-nav {
-//   margin: auto;
-//   white-space: nowrap;
-//   :hover .roll-out {
-//     display: block;
-//     opacity: 1;
-//     position: relative;
-//     top:0;
-//     right: 100px;
-//       transition: all 600ms;
-//     }
-//     :hover .roll-out #about {
-//       left: -11px;
-//     }
-//     :hover .roll-out #skills {
-//       left: -15px;
-//     }
-//     :hover .roll-out #portfolio {
-//       left: -23px;
-//     }
-//     :hover .roll-out #contact {
-//       left: -16px;
-//     }
-//   }
-//   a {
-//     color: rgba(255,255,255,.3);
-//     max-width: 15px;
-//     margin: 10px 50px;
-//     display: inline-block;
-//       :hover, &.active {
-//         color: #f9df74;
-//         text-decoration: none;
-//       }
-//     }
-//   }
-// `;
+const NavContainer = styled(Container)`
+position: fixed;
+left: 0;
+right: 0;
+max-width: 100%;
+top: 0;
+padding: 0;
+z-index: 999;
+max-width: 100%;
+.roll-out {
+  display: block;
+  opacity: 0;
+  top: -20px;
+  right: 0;
+  margin: 0;
+  position: relative;
+  transition: all 600ms;
+}
+.navbar-nav {
+  margin: auto;
+  white-space: nowrap;
+
+  a {
+    cursor: pointer;
+    color: black;
+    margin: 10px 30px;
+    display: inline-block;
+      :hover {
+        text-decoration: none;
+      }
+      &.active {
+        color: white;
+      }
+    }
+  }
+`;
 
 const PhotoContainer = styled(Container)`
   margin-top: 5rem;
@@ -148,7 +118,8 @@ const FooterContainer = styled(Container)`
 `;
 
 const App = () => {
-  // const [showNav, setShowNav] = useState(false);
+  const [showNav, setShowNav] = useState(false);
+  const [currentPage, setCurrentPage] = useState('about');
   const [showPhoto, setShowPhoto] = useState(false);
   const [showTitle, setShowTitle] = useState(false);
   const [showAbout, setShowAbout] = useState(false);
@@ -157,7 +128,11 @@ const App = () => {
   const [showContact, setShowContact] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  // const slideTimeout = { enter: 800, exit: 800 };
+  const slideTimeout = { enter: 800, exit: 800 };
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
 
   const routes = [
     {
@@ -196,16 +171,17 @@ const App = () => {
       >
         <Loading />
       </CSSTransition>
-      {/* <NavContainer>
+      <NavContainer>
         <CSSTransition
           in={showNav}
+          cb={handlePageChange}
           timeout={slideTimeout}
           classNames="slide"
           unmountOnExit
         >
           <NavBar routes={routes} />
         </CSSTransition>
-      </NavContainer> */}
+      </NavContainer>
       <PhotoContainer>
         <CSSTransition
           in={showPhoto}
@@ -226,20 +202,31 @@ const App = () => {
           classNames="page"
           unmountOnExit
         >
-          <h1>Ex-Chef Turned Dev</h1>
+          <h1>(chef) => dev</h1>
+          {/* <OnClickComponent
+            cb={handlePageChange}
+          /> */}
         </CSSTransition>
       </PhotoContainer>
       <CarouselContainer>
-        {routes.map(({ Component, show }) => (
-          <CSSTransition
-            in={show}
-            timeout={300}
-            classNames="page"
-            unmountOnExit
-          >
-            <Component />
-          </CSSTransition>
-        ))}
+        <CSSTransition
+          in
+          timeout={300}
+          classNames="page"
+          unmountOnExit
+        >
+          {currentPage === 'about' ? (
+            <About />
+          ) : currentPage === 'portfolio' ? (
+            <Portfolio />
+          ) : currentPage === 'skills' ? (
+            <Skills />
+          ) : currentPage === 'contact' ? (
+            <Contact />
+          )
+            : <About />}
+        </CSSTransition>
+
       </CarouselContainer>
       <CSSTransition
         in={showContact}

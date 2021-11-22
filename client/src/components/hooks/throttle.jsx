@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { throttle } from 'lodash';
 
 const useDocumentScrollThrottled = (callback) => {
+  // eslint-disable-next-line no-unused-vars
   const [scrollPosition, setScrollPosition] = useState(0);
   let previousScrollTop = 0;
 
