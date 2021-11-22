@@ -17,9 +17,7 @@ import NavBar from './navbar';
 import About from './about';
 import Skills from './skills';
 import Portfolio from './portfolio';
-import Contact from './contact';
 import Footer from './footer';
-// import OnClickComponent from './onClickComponent';
 import Profile from '../../assets/profile.jpg';
 import Loading from './loading';
 
@@ -28,6 +26,7 @@ AOS.init();
 const Global = createGlobalStyle`
 body {
   overflow-x: hidden;
+  overflow-y: hidden;
   margin: 0;
   font-family: "space mono";
   background-image: linear-gradient( 296.3deg,  rgba(221,221,221,1) 61.4%, rgba(237,242,244,1) 67.4% );}
@@ -113,7 +112,11 @@ const CarouselContainer = styled(Container)`
 `;
 
 const FooterContainer = styled(Container)`
-  margin-top: 45rem;
+  position: absolute;
+  bottom: 1%;
+  left: 0;
+  right: 0;
+  width: 100%;
   text-align: center;
 `;
 
@@ -125,7 +128,7 @@ const App = () => {
   const [showAbout, setShowAbout] = useState(false);
   const [showSkills, setShowSkills] = useState(false);
   const [showPortfolio, setShowPortfolio] = useState(false);
-  const [showContact, setShowContact] = useState(false);
+  const [showFooter, setShowFooter] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   const slideTimeout = { enter: 800, exit: 800 };
@@ -144,9 +147,6 @@ const App = () => {
     {
       path: '/portfolio', name: 'Portfolio', Component: Portfolio, icon: faBookOpen, show: showPortfolio,
     },
-    {
-      path: '/contact', name: 'Contact', Component: Contact, icon: faAddressCard, show: showContact,
-    },
   ];
 
   useEffect(() => {
@@ -156,7 +156,7 @@ const App = () => {
     setTimeout(() => setShowAbout(true), isLoading ? 6200 : 6200 - 4900);
     setTimeout(() => setShowSkills(true), isLoading ? 6300 : 6300 - 4900);
     setTimeout(() => setShowPortfolio(true), isLoading ? 6400 : 6400 - 4900);
-    setTimeout(() => setShowContact(true), isLoading ? 6500 : 6500 - 4900);
+    setTimeout(() => setShowFooter(true), isLoading ? 6500 : 6500 - 4900);
     setTimeout(() => setIsLoading(false), 4900);
   }, [isLoading]);
 
@@ -174,12 +174,14 @@ const App = () => {
       <NavContainer>
         <CSSTransition
           in={showNav}
-          cb={handlePageChange}
           timeout={slideTimeout}
           classNames="slide"
           unmountOnExit
         >
-          <NavBar routes={routes} />
+          <NavBar
+            cb={handlePageChange}
+            routes={routes}
+          />
         </CSSTransition>
       </NavContainer>
       <PhotoContainer>
@@ -203,16 +205,13 @@ const App = () => {
           unmountOnExit
         >
           <h1>(chef) => dev</h1>
-          {/* <OnClickComponent
-            cb={handlePageChange}
-          /> */}
         </CSSTransition>
       </PhotoContainer>
       <CarouselContainer>
         <CSSTransition
           in
-          timeout={300}
-          classNames="page"
+          timeout={slideTimeout}
+          classNames="slide"
           unmountOnExit
         >
           {currentPage === 'about' ? (
@@ -221,21 +220,20 @@ const App = () => {
             <Portfolio />
           ) : currentPage === 'skills' ? (
             <Skills />
-          ) : currentPage === 'contact' ? (
-            <Contact />
-          )
-            : <About />}
+          ) : <About />}
         </CSSTransition>
 
       </CarouselContainer>
       <CSSTransition
-        in={showContact}
+        in={showFooter}
         timeout={300}
         classNames="page"
         unmountOnExit
       >
         <FooterContainer>
-          <Footer />
+          <Footer
+            routes={routes}
+          />
         </FooterContainer>
       </CSSTransition>
     </>

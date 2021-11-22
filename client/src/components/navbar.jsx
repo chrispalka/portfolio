@@ -9,14 +9,13 @@ const NavBar = ({ routes, cb }) => (
     <Navbar.Collapse id="basic-navbar-nav">
       <Nav>
         {routes.map((route) => (
-          <Link
+          <Nav.Link
             onClick={() => cb(route.name.toLowerCase())}
-            activeClass="active"
             key={route.path}
             to={route.name.toLowerCase()}
           >
             {route.name}
-          </Link>
+          </Nav.Link>
         ))}
       </Nav>
     </Navbar.Collapse>

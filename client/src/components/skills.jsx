@@ -52,7 +52,9 @@ const Skills = () => (
     <h1>Skills</h1>
     <InnerDiv>
       {skillList.map((skill) => (
-        <List>
+        <List
+          key={skill}
+        >
           {skill}
         </List>
       ))}

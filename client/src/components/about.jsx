@@ -31,21 +31,18 @@ const InnerDiv = styled(Container)`
   }
 `;
 
-const About = () => {
-  const [clicked, setClick] = useState(false);
-  return (
-    <MainContainer data-aos="fade-up" data-aos-duration="4000" id="about">
-      <h1 onClick={() => setClick(!clicked)}>Let me introduce myself</h1>
-      <InnerDiv>
-        <p>
-          Hi! My name is Chris Palka, an aspiring software engineer & tech
-          enthusiast. I absolutely love thinking outside of the box to solve
-          real-world problems, harnessing my creativity both on and off the plate.
-          New technologies are always exciting and I have a strong passion for troubleshooting.
-        </p>
-      </InnerDiv>
-    </MainContainer>
-  );
-};
+const About = () => (
+  <MainContainer data-aos="fade-up" data-aos-duration="4000" id="about">
+    <h1>Let me introduce myself</h1>
+    <InnerDiv>
+      <p>
+        Hi! My name is Chris Palka, an aspiring software engineer & tech
+        enthusiast. I absolutely love thinking outside of the box to solve
+        real-world problems, harnessing my creativity both on and off the plate.
+        New technologies are always exciting and I have a strong passion for troubleshooting.
+      </p>
+    </InnerDiv>
+  </MainContainer>
+);
 
 export default About;
