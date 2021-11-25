@@ -14,14 +14,15 @@ const skillList = [
 ];
 
 const SkillsContainer = styled(Container)`
-  right: 0;
-  left: 0;
-  height: 500px;
-  border-bottom: 1px solid #2b2d42;
-  li {
-    font-size: 16px;
-  }
-  h1 {
+right: 0;
+left: 0;
+height: 500px;
+border-bottom: 1px solid #2b2d42;
+li {
+  font-size: 16px;
+}
+h1 {
+    text-align: center;
     font-weight: 600;
   }
 `;

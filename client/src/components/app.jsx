@@ -8,9 +8,6 @@ import React, {
 import { CSSTransition } from 'react-transition-group';
 import styled, { createGlobalStyle } from 'styled-components';
 import { Container } from 'react-bootstrap';
-import {
-  faUser, faHammer, faBookOpen, faAddressCard,
-} from '@fortawesome/free-solid-svg-icons';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import NavBar from './navbar';
@@ -33,43 +30,6 @@ body {
 html {
   scroll-behavior: smooth;
 }
-`;
-
-const NavContainer = styled(Container)`
-position: fixed;
-left: 0;
-right: 0;
-max-width: 100%;
-top: 0;
-padding: 0;
-z-index: 999;
-max-width: 100%;
-.roll-out {
-  display: block;
-  opacity: 0;
-  top: -20px;
-  right: 0;
-  margin: 0;
-  position: relative;
-  transition: all 600ms;
-}
-.navbar-nav {
-  margin: auto;
-  white-space: nowrap;
-
-  a {
-    cursor: pointer;
-    color: black;
-    margin: 10px 30px;
-    display: inline-block;
-      :hover {
-        text-decoration: none;
-      }
-      &.active {
-        color: white;
-      }
-    }
-  }
 `;
 
 const PhotoContainer = styled(Container)`
@@ -139,13 +99,13 @@ const App = () => {
 
   const routes = [
     {
-      path: '/', name: 'About', Component: About, icon: faUser, show: showAbout,
+      path: '/', name: 'About', Component: About, show: showAbout,
     },
     {
-      path: '/skills', name: 'Skills', Component: Skills, icon: faHammer, show: showSkills,
+      path: '/skills', name: 'Skills', Component: Skills, show: showSkills,
     },
     {
-      path: '/portfolio', name: 'Portfolio', Component: Portfolio, icon: faBookOpen, show: showPortfolio,
+      path: '/portfolio', name: 'Portfolio', Component: Portfolio, show: showPortfolio,
     },
   ];
 
@@ -171,19 +131,18 @@ const App = () => {
       >
         <Loading />
       </CSSTransition>
-      <NavContainer>
-        <CSSTransition
-          in={showNav}
-          timeout={slideTimeout}
-          classNames="slide"
-          unmountOnExit
-        >
-          <NavBar
-            cb={handlePageChange}
-            routes={routes}
-          />
-        </CSSTransition>
-      </NavContainer>
+      <CSSTransition
+        in={showNav}
+        timeout={slideTimeout}
+        classNames="slide"
+        unmountOnExit
+      >
+        <NavBar
+          currentPage={currentPage}
+          cb={handlePageChange}
+          routes={routes}
+        />
+      </CSSTransition>
       <PhotoContainer>
         <CSSTransition
           in={showPhoto}
@@ -209,7 +168,7 @@ const App = () => {
       </PhotoContainer>
       <CarouselContainer>
         <CSSTransition
-          in
+          in={showAbout}
           timeout={slideTimeout}
           classNames="slide"
           unmountOnExit

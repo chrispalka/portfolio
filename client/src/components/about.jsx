@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-import React, { useState } from 'react';
+import React from 'react';
 import { Container } from 'react-bootstrap';
 import styled from 'styled-components';
 
@@ -11,6 +11,7 @@ const MainContainer = styled(Container)`
   border-bottom: 1px solid #2b2d42;
   h1 {
     font-weight: 600;
+    text-align: center;
   }
   `;
 

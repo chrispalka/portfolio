@@ -5,6 +5,9 @@ import {
   faGithub,
   faLinkedin,
 } from '@fortawesome/free-brands-svg-icons';
+import {
+  faAddressCard,
+} from '@fortawesome/free-solid-svg-icons';
 
 const icons = [
   {
@@ -14,6 +17,10 @@ const icons = [
   {
     icon: faLinkedin,
     url: 'https://www.linkedin.com/in/chrispalka/',
+  },
+  {
+    icon: faAddressCard,
+    url: 'mailto:cpalka87@gmail.com',
   },
 ];
 
