@@ -138,7 +138,7 @@ const App = () => {
         unmountOnExit
       >
         <NavBar
-          currentPage={currentPage}
+          currentpage={currentPage}
           cb={handlePageChange}
           routes={routes}
         />

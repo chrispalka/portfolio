@@ -37,10 +37,11 @@ const About = () => (
     <h1>Let me introduce myself</h1>
     <InnerDiv>
       <p>
-        Hi! My name is Chris Palka, an aspiring software engineer & tech
-        enthusiast. I absolutely love thinking outside of the box to solve
+        Hi! My name is Chris Palka, an aspiring software engineer, tech
+        enthusiast & chef. I absolutely love thinking outside of the box to solve
         real-world problems, harnessing my creativity both on and off the plate.
-        New technologies are always exciting and I have a strong passion for troubleshooting.
+        New technologies are always exciting and fuel my passion for growth.
+        Also Space and anything sci-fi is something I heavily enjoy.
       </p>
     </InnerDiv>
   </MainContainer>

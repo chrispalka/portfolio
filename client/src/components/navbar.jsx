@@ -24,31 +24,41 @@ max-width: 100%;
 .navbar-nav {
   margin: auto;
   white-space: nowrap;
-  .active {
-    color: black !important;
-    border-bottom: 2px solid maroon !important;
-  }
   a {
     cursor: pointer;
     color: black;
-    margin: 10px 30px;
+    margin: 10px 30px 0;
     display: inline-block;
       :hover {
         text-decoration: none;
       }
     }
+    .navvy:after {
+      content: '';
+      display: block;
+      margin: auto;
+      height: 2px;
+      width: 0px;
+      background: transparent;
+      transition: width .2s ease, background-color .2s ease;
+    }
+    .navvy.active:after {
+      width: 100%;
+      margin-left: ${(props) => (props.currentpage === 'about' && '-1.1px')};
+      background: maroon;
+    }
   }
 `;
 
-const NavBar = ({ routes, cb, currentPage }) => (
-  <NavContainer currentPage={currentPage}>
+const NavBar = ({ routes, cb, currentpage }) => (
+  <NavContainer currentpage={currentpage}>
     <Navbar bg="" className="mr-auto" expand="lg">
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav>
           {routes.map((route) => (
             <Nav.Link
-              className={`${currentPage === route.name.toLowerCase() ? 'active' : ''}`}
+              className={`${currentpage === route.name.toLowerCase() ? 'navvy active' : 'navvy'}`}
               onClick={() => cb(route.name.toLowerCase())}
               key={route.path}
               to={route.name.toLowerCase()}

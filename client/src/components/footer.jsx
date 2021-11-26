@@ -36,8 +36,9 @@ const FooterContainer = styled.a`
 const Footer = () => (
   <>
     {
-      icons.map((icon) => (
+      icons.map((icon, i) => (
         <FooterContainer
+          key={i}
           href={icon.url}
           target="_blank"
         >

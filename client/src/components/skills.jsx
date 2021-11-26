@@ -1,5 +1,6 @@
 import React from 'react';
 import { Container } from 'react-bootstrap';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import styled from 'styled-components';
 
 const skillList = [
@@ -11,6 +12,8 @@ const skillList = [
   'Docker',
   'MySQL',
   'MongoDB',
+  'Tailwind CSS',
+  'Styled Components',
 ];
 
 const SkillsContainer = styled(Container)`
@@ -48,17 +51,21 @@ const List = styled.li`
 
 `;
 
+const slideTimeout = { enter: 800, exit: 800 };
+
 const Skills = () => (
-  <SkillsContainer data-aos="fade-up" data-aos-duration="4000" id="skills">
-    <h1>Skills</h1>
+  <SkillsContainer id="skills">
+    <CSSTransition
+      in
+      timeout={10000}
+      classNames="page"
+    >
+      <h1>Skills</h1>
+    </CSSTransition>
     <InnerDiv>
-      {skillList.map((skill) => (
-        <List
-          key={skill}
-        >
-          {skill}
-        </List>
-      ))}
+      {/* {skillList.map((skill) => ( */}
+      <p>Hi</p>
+      {/* ))} */}
     </InnerDiv>
   </SkillsContainer>
 );

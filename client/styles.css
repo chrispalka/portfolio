@@ -69,6 +69,8 @@
   font-size: 20px;
 }
 
-/* .active {
-  color: red !important
-} */
+
+.active:hover:after {
+  width: 100%;
+  background: blue;
+}
